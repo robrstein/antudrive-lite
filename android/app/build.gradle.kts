@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -20,21 +19,37 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.antutech.antudrive_lite"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        // BLE requires API 21+; runtime BLE permissions require API 23+
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            // Set these via environment variables or a local keystore.properties file
+            // that is NOT committed to version control.
+            // Example:
+            //   storeFile = file(System.getenv("KEYSTORE_PATH") ?: "keystore.jks")
+            //   storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+            //   keyAlias = System.getenv("KEY_ALIAS") ?: ""
+            //   keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            //
+            // Until a keystore is configured, release builds fall back to debug signing.
+            storeFile = signingConfigs.getByName("debug").storeFile
+            storePassword = signingConfigs.getByName("debug").storePassword
+            keyAlias = signingConfigs.getByName("debug").keyAlias
+            keyPassword = signingConfigs.getByName("debug").keyPassword
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
