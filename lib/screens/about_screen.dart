@@ -32,18 +32,21 @@ class AboutScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
                 'assets/icon/app_icon.png',
-                width: 80,
-                height: 80,
+                width: 120,
+                height: 120,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => Container(
-                  width: 80,
-                  height: 80,
+                  width: 120,
+                  height: 120,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primaryContainer,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Icon(Icons.directions_car_filled,
-                      size: 48, color: theme.colorScheme.primary),
+                  child: Icon(
+                    Icons.directions_car_filled,
+                    size: 48,
+                    color: theme.colorScheme.primary,
+                  ),
                 ),
               ),
             ),
@@ -52,8 +55,9 @@ class AboutScreen extends StatelessWidget {
           Center(
             child: Text(
               'AntuDrive Lite',
-              style: theme.textTheme.headlineMedium
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: theme.textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Center(
@@ -134,32 +138,43 @@ class _LinkTile extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(icon,
-                  size: 28,
-                  color: disabled
-                      ? theme.colorScheme.outline
-                      : theme.colorScheme.primary),
+              Icon(
+                icon,
+                size: 28,
+                color: disabled
+                    ? theme.colorScheme.outline
+                    : theme.colorScheme.primary,
+              ),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: disabled
-                              ? theme.colorScheme.outline
-                              : theme.colorScheme.onSurface,
-                        )),
-                    Text(subtitle,
-                        style: TextStyle(
-                            fontSize: 11, color: theme.colorScheme.outline)),
+                    Text(
+                      title,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: disabled
+                            ? theme.colorScheme.outline
+                            : theme.colorScheme.onSurface,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: theme.colorScheme.outline,
+                      ),
+                    ),
                   ],
                 ),
               ),
               if (!disabled)
-                Icon(Icons.open_in_new,
-                    size: 16, color: theme.colorScheme.outline),
+                Icon(
+                  Icons.open_in_new,
+                  size: 16,
+                  color: theme.colorScheme.outline,
+                ),
             ],
           ),
         ),
@@ -183,8 +198,9 @@ class _Section extends StatelessWidget {
         children: [
           Text(
             title,
-            style: theme.textTheme.labelLarge
-                ?.copyWith(color: theme.colorScheme.primary),
+            style: theme.textTheme.labelLarge?.copyWith(
+              color: theme.colorScheme.primary,
+            ),
           ),
           const SizedBox(height: 6),
           Text(body, style: const TextStyle(fontSize: 13, height: 1.5)),
